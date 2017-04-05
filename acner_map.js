@@ -317,6 +317,34 @@ $.googleMaps = {
 			}
 		}
 
+	},
+	mapEventos: function(markers, variables, polylineas, grupos) {
+		if (typeof(markers.length) == 'undefined')
+            markers = [markers];
+        var j = 0;
+        for (i = 0; i < markers.length; i++) {
+            if (markers[i].latitude && markers[i].longitude) {            
+				var markerOpts = {
+				   position: new google.maps.LatLng(markers[i].latitude, markers[i].longitude),
+				   draggable: false,
+				   animation: google.maps.Animation.DROP,
+				   map: $.googleMaps.gMap,
+				   icon:markers[i].icon.image,
+				   labelContent: (markers[i].info.descripcion)? markers[i].info.descripcion:"",
+				   labelAnchor: new google.maps.Point(20, 40), 
+				   labelClass: 'LabeledMarker_eventos',
+				   labelStyle: {opacity: 0.75}
+				};
+		
+	 			var point = "";
+      			var html = markers[i].info.layer || "";
+			 	if ( markers[i].latitude && markers[i].longitude ) {
+					$.googleMaps.marker[i] =crear_puntos(point,html,markerOpts);
+				}
+			 	grupos['eventos'].push($.googleMaps.marker[i]);
+			}
+		}
+
 	}
 }
 function contarmarklabels(){
