@@ -60,7 +60,7 @@ $.googleMaps = {
 		if(intervalID_eventos!=''){
 				clearInterval(intervalID_eventos);
 			}
-			$.googleMaps.mapEventos(center, opts.markeventos,opts.variables, '',grupos,0);
+			$.googleMaps.mapEventos( opts.markeventos,opts.variables, '',grupos,0);
 		}
 		if ( opts.paradas ){
 			if(intervalID_paradas!=''){
